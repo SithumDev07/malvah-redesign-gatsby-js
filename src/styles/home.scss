@@ -3,11 +3,27 @@
 
 $bg-color: white;
 
+:root {
+    --main-color: #3664e8;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     font-family: "Poppins", sans-serif;
     background-color: $bg-color;
 }
 
-main-container{
-
+.main-container{
+    ul {
+        scroll-behavior: smooth;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        padding-left: 10vw;
+        box-sizing: border-box;
+        overflow: auto;
+    }
 }

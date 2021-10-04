@@ -1,1 +1,1 @@
-# award winning malvah.co re-create using gatsby js
+# Award winning malvah.co re-create using gatsby js
