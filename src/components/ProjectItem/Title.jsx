@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Title({ title }) {
+function Title({ title, handlerMouseEnter, handlerMouseLeave }) {
     return (
-        <div className="title-item">
+        <div className="title-item" onMouseEnter={handlerMouseEnter} onMouseLeave={handlerMouseLeave}>
             <h1 className="menu-title">{title}</h1>
         </div>
     )

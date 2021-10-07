@@ -8,7 +8,6 @@
     }
 
     img {
-        opacity: 0;
         position: fixed;
         left: 45vw;
         width: auto;
@@ -16,6 +15,7 @@
         object-fit: cover;
         top: 30vh;
         pointer-events: none;
+        transition: transform 1s cubic-bezier(0.165,0.84,0.44,1);
     }
 
     .menu-title {
