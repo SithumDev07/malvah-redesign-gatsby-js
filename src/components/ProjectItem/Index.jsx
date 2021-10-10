@@ -67,18 +67,29 @@ function ProjectItem({ project, itemIndex }) {
     }
 
     const handlerMouseEnter = () => {
+        // dispatch({
+        //     type: CHANGE_OPACITY,
+        //     payload: 1
+        // });
         handleOpacity(0, 1, 500);
+
         listItem.current.addEventListener('mousemove', parallax);
     }
 
     const handlerMouseLeave = () => {
+        listItem.current.removeEventListener('mousemove', parallax);
+
+        // dispatch({
+        //     type: CHANGE_OPACITY,
+        //     payload: 0
+        // });
+
         handleOpacity(1, 0, 800);
         dispatch({
             type: CHANGE_COORDINATES,
             payload: initialState.parallaxPos
         });
 
-        listItem.current.removeEventListener('mousemove', parallax);
     }
 
     return (

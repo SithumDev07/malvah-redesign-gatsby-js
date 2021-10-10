@@ -25,7 +25,7 @@ const easings = {
     easeOutQuint: t => 1+(--t)*t*t*t*t,
     // acceleration until halfway, then deceleration 
     easeInOutQuint: t => t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
-  }
+  };
 
 
 function getValue(start, end, elapsed, duration, easeMethod) {
@@ -40,9 +40,9 @@ export default function animate({
     onUpdate,
     onComplete,
     duration = 600,
-    easeMethod
+    easeMethod = "linear"
 }) {
-    const startTime = performance.now;
+    const startTime = performance.now();
 
     const tick = () => {
         const elapsed = performance.now() - startTime;
