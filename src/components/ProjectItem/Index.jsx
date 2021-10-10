@@ -3,6 +3,7 @@ import Image from './Image';
 import { Hash } from 'react-feather';
 import "./styles.scss";
 import Title from './Title';
+import animate from './animate';
 
 const initialState = {
     opacity: 0,
@@ -38,6 +39,8 @@ function ProjectItem({ project, itemIndex }) {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
+    const easeMethod = 'easeInOutCubic';
+
     const parallax = (event) => {
         const speed = -5;
         const x = (window.innerWidth - event.pageX * speed) / 100;
@@ -49,20 +52,27 @@ function ProjectItem({ project, itemIndex }) {
         })
     }
 
-    const handlerMouseEnter = () => {
-        dispatch({
-            type: CHANGE_OPACITY,
-            payload: 1
-        });
+    const handleOpacity = (initialOpacity, newOpacity, duration) => {
+        animate({
+            fromValue: initialOpacity,
+            toValue: newOpacity,
+            onUpdate: (newOpacity, callback) => {
+                dispatch({ type: CHANGE_OPACITY, payload: newOpacity });
+                callback();
+            },
+            onComplete: () => { },
+            duration: duration,
+            easeMethod: easeMethod
+        })
+    }
 
+    const handlerMouseEnter = () => {
+        handleOpacity(0, 1, 500);
         listItem.current.addEventListener('mousemove', parallax);
     }
 
     const handlerMouseLeave = () => {
-        dispatch({
-            type: CHANGE_OPACITY,
-            payload: 0
-        });
+        handleOpacity(1, 0, 800);
         dispatch({
             type: CHANGE_COORDINATES,
             payload: initialState.parallaxPos
